@@ -1,0 +1,29 @@
+{
+  "bitwise": true,
+  "camelcase": true,
+  "curly": true,
+  "eqeqeq": true,
+  "forin": true,
+  "immed": true,
+  "indent": 2,
+  "latedef": "nofunc",
+  "newcap": true,
+  "noarg": true,
+  "noempty": true,
+  "nonbsp": true,
+  "quotmark": "single",
+  "undef": true,
+  "unused": true,
+
+  "strict": true,
+  "debug": true,
+  "validthis": true,
+  "esnext": true,
+
+  "node": true,
+  "devel": true,
+  "browser": true,
+  "jquery": true,
+
+  "globals": {"angular":true, "_":true, "moment":true}
+}

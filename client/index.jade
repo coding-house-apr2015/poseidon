@@ -1,0 +1,23 @@
+doctype html
+html(lang='en', ng-app='poseidon')
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    title Poseidon
+    link(rel='stylesheet', href='http://maxcdn.bootstrapcdn.com/bootswatch/3.3.4/superhero/bootstrap.min.css')
+    link(rel='stylesheet', href='/vendor/font-awesome/css/font-awesome.min.css')
+    link(rel='stylesheet', href=isProd ? '/index.min.css' : '/index.css')
+    link(rel='shortcut icon', href='/favicon.ico')
+  body
+    .container-fluid
+      .row-xs-12
+        h1 Poseidon
+
+    script(src='/vendor/jquery/dist/jquery.min.js')
+    script(src='/vendor/bootstrap/dist/js/bootstrap.min.js')
+    script(src='/vendor/lodash/lodash.min.js')
+    script(src='/vendor/firebase/firebase.js')
+    script(src='/vendor/angular/angular.min.js')
+    script(src='/vendor/angularfire/dist/angularfire.min.js')
+    script(src=isProd ? '/index.min.js' : '/index.js')

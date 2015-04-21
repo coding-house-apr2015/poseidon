@@ -1,0 +1,9 @@
+{
+  "name": "poseidon",
+  "version": "0.0.1",
+  "homepage": "https://github.com/coding-house-apr2015/poseidon",
+  "authors": [
+    "Chyld Medford <chyld.medford@gmail.com>"
+  ],
+  "license": "BSD"
+}
