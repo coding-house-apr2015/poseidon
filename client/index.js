@@ -1,1 +1,1 @@
-angular.module('poseidon', []);
+angular.module('poseidon', ['firebase']);
