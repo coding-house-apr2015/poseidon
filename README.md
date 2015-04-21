@@ -6,7 +6,7 @@
 - Font Awesome
 - Less
 
-#### JS Libray Features
+#### JS Features
 - jQuery
 - LoDash
 - Firebase
