@@ -1,0 +1,23 @@
+nav.navbar.navbar-default(ng-controller='NavCtrl')
+  .container-fluid
+    .navbar-header
+      button.navbar-toggle.collapsed(data-toggle="collapse", data-target="#navbar")
+        span.sr-only Toggle navigation
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      a.navbar-brand(href='/') Poseidon
+    #navbar.collapse.navbar-collapse
+      ul.nav.navbar-nav.navbar-right(ng-show='activeUser')
+        li: a(ui-sref='home'): i.fa.fa.fa-home &nbsp; Home
+        li: a(ui-sref='about'): i.fa.fa.fa-info &nbsp; About
+        li: a(ui-sref='faq'): i.fa.fa.fa-question &nbsp; FAQ
+        li: a(ui-sref='contact'): i.fa.fa.fa-phone &nbsp; Contact
+        li: button.btn.btn-danger(ng-click='logout()'): i.fa.fa-sign-out &nbsp; {{activeUser.password.email}}
+      ul.nav.navbar-nav.navbar-right(ng-hide='activeUser')
+        li: a(ui-sref='home'): i.fa.fa.fa-home &nbsp; Home
+        li: a(ui-sref='about'): i.fa.fa.fa-info &nbsp; About
+        li: a(ui-sref='faq'): i.fa.fa.fa-question &nbsp; FAQ
+        li: a(ui-sref='contact'): i.fa.fa.fa-phone &nbsp; Contact
+        li: a(ui-sref='register'): i.fa.fa-user-plus &nbsp; Register
+        li: a(ui-sref='login'): i.fa.fa-key &nbsp; Login

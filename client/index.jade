@@ -7,18 +7,22 @@ html(lang='en', ng-app='poseidon')
     title Poseidon
     link(rel='stylesheet', href='//maxcdn.bootstrapcdn.com/bootswatch/3.3.4/superhero/bootstrap.min.css')
     link(rel='stylesheet', href='/vendor/font-awesome/css/font-awesome.min.css')
+    link(rel='stylesheet', href='/vendor/sweetalert/lib/sweet-alert.css')
     link(rel='stylesheet', href=isProd ? '/index.min.css' : '/index.css')
     link(rel='shortcut icon', href='/favicon.ico')
   body
+    include views/nav/nav
     .container-fluid
       .row
         .col-xs-12
-          h1 Poseidon
+          div(ui-view)
 
     script(src='/vendor/jquery/dist/jquery.min.js')
     script(src='/vendor/bootstrap/dist/js/bootstrap.min.js')
     script(src='/vendor/lodash/lodash.min.js')
     script(src='/vendor/firebase/firebase.js')
+    script(src='/vendor/sweetalert/lib/sweet-alert.min.js')
     script(src='/vendor/angular/angular.min.js')
     script(src='/vendor/angularfire/dist/angularfire.min.js')
+    script(src='/vendor/angular-ui-router/release/angular-ui-router.min.js')
     script(src=isProd ? '/index.min.js' : '/index.js')

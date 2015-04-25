@@ -1,0 +1,14 @@
+h3 {{name | uppercase}}
+
+.row
+  .col-xs-4
+    form(name='userForm', novalidate)
+      .form-group
+        label(for='email') Email
+        input.form-control#email(type='email', name='email', ng-model='user.email')
+      .form-group
+        label(for='password') Password
+        input.form-control#password(type='password', name='password', ng-model='user.password')
+      .form-group
+        button.btn.btn-default(type='submit', ng-click='submit(user)') Submit
+  .col-xs-8
