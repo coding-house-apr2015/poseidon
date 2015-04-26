@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('poseidon')
-.controller('NavCtrl', ['$rootScope', '$scope', '$state', 'User', function($rootScope, $scope, $state, User){
+.controller('NavCtrl', function($rootScope, $scope, $state, User){
 
-  $scope.afAuth.$onAuth(function(data) {
+  $scope.afAuth.$onAuth(function(data){
     if(data){
       $rootScope.activeUser = data;
     }else{
@@ -16,4 +16,4 @@ angular.module('poseidon')
   $scope.logout = function(){
     User.logout();
   };
-}]);
+});

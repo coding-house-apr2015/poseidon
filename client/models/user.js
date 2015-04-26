@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('poseidon')
-.factory('User', ['$rootScope', function($rootScope){
+.factory('User', function($rootScope){
 
   function User(){
   }
@@ -19,4 +19,4 @@ angular.module('poseidon')
   };
 
   return User;
-}]);
+});

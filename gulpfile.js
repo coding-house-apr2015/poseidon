@@ -1,3 +1,5 @@
+/* jshint camelcase:false */
+
 'use strict';
 
 var run = require('run-sequence');
@@ -20,6 +22,7 @@ var mincss = require('gulp-minify-css');
 var gulpif = require('gulp-if');
 var browser = require('browser-sync');
 var replace = require('gulp-rev-replace');
+var annotate = require('gulp-ng-annotate');
 var awspublish = require('gulp-awspublish');
 var parallelize = require('concurrent-transform');
 
@@ -93,6 +96,7 @@ gulp.task('less', function() {
 gulp.task('js', function() {
   return gulp.src(paths.codesrc)
     .pipe(concat('index.js'))
+    .pipe(annotate({single_quotes: true}))
     .pipe(gulpif(isProd, rename({suffix: '.min'})))
     .pipe(gulpif(isProd, uglify()))
     .pipe(gulp.dest(paths.temp))

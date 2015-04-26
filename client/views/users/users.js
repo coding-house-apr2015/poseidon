@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('poseidon')
-.controller('UsersCtrl', ['$scope', '$state', '$window', 'User', function($scope, $state, $window, User){
+.controller('UsersCtrl', function($scope, $state, $window, User){
   $scope.name = $state.current.name;
 
   $scope.submit = function(user){
@@ -20,4 +20,4 @@ angular.module('poseidon')
       });
     }
   };
-}]);
+});
