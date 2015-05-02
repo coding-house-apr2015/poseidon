@@ -20,10 +20,9 @@
   "validthis": true,
   "esnext": true,
 
-  "node": true,
   "devel": true,
+  "node": false,
   "browser": true,
-  "jquery": true,
 
-  "globals": {"angular":true, "_":true, "moment":true}
+  "globals": {"angular": true}
 }
