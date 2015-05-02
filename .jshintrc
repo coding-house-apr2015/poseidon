@@ -21,7 +21,7 @@
   "esnext": true,
 
   "devel": true,
-  "node": false,
+  "node": true,
   "browser": true,
 
   "globals": {"angular": true}
