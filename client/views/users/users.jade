@@ -10,5 +10,9 @@ h3 {{name | uppercase}}
         label(for='password') Password
         input.form-control#password(type='password', name='password', ng-model='user.password')
       .form-group
-        button.btn.btn-default(type='submit', ng-click='submit(user)') Submit
+        button.btn.btn-default(ng-click='submit(user)') Email
+        button.btn.btn-primary(ng-click='oauth("twitter")'): i.fa.fa-twitter
+        button.btn.btn-success(ng-click='oauth("google")'): i.fa.fa-google
+        button.btn.btn-info(ng-click='oauth("facebook")'): i.fa.fa-facebook
+        button.btn.btn-warning(ng-click='oauth("github")'): i.fa.fa-github
   .col-xs-8
