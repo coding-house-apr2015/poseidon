@@ -1,4 +1,4 @@
-/* jshint camelcase:false */
+/* eslint camelcase: 0 */
 
 'use strict';
 
@@ -7,13 +7,12 @@ var rev = require('gulp-rev');
 var gulp = require('gulp');
 var jade = require('gulp-jade');
 var less = require('gulp-less');
-var lint = require('gulp-jshint');
+var lint = require('gulp-eslint');
 var copy = require('gulp-copy');
 var util = require('gulp-util');
 var size = require('gulp-filesize');
 var watch = require('gulp-watch');
 var bower = require('gulp-bower');
-//var debug = require('gulp-debug');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
@@ -27,11 +26,11 @@ var awspublish = require('gulp-awspublish');
 var parallelize = require('concurrent-transform');
 
 var paths = {
-  filesrc:  ['./client/**/*'],
-  jadesrc:  ['./client/**/*.jade'],
-  htmlsrc:  ['./public/**/*.html'],
-  lesssrc:  ['./client/index.less'],
-  codesrc:  ['./client/**/*.js'],
+  filesrc: ['./client/**/*'],
+  jadesrc: ['./client/**/*.jade'],
+  htmlsrc: ['./public/**/*.html'],
+  lesssrc: ['./client/index.less'],
+  codesrc: ['./client/**/*.js'],
   mediasrc: ['./client/assets/**/*', './client/favicon.ico'],
   destination: './public',
   temp: './temp',
@@ -79,11 +78,11 @@ gulp.task('clean:aws', function(cb){
   rimraf(paths.aws, cb);
 });
 
-gulp.task('bower', function() {
+gulp.task('bower', function(){
   return bower();
 });
 
-gulp.task('less', function() {
+gulp.task('less', function(){
   return gulp.src(paths.lesssrc)
     .pipe(less())
     .pipe(gulpif(isProd, rename({suffix: '.min'})))
@@ -93,7 +92,7 @@ gulp.task('less', function() {
     .on('error', util.log);
 });
 
-gulp.task('js', function() {
+gulp.task('js', function(){
   return gulp.src(paths.codesrc)
     .pipe(concat('index.js'))
     .pipe(annotate({single_quotes: true}))
@@ -104,7 +103,7 @@ gulp.task('js', function() {
     .on('error', util.log);
 });
 
-gulp.task('rev', ['less', 'js'], function() {
+gulp.task('rev', ['less', 'js'], function(){
   return gulp.src(paths.tempfiles)
     .pipe(rev())
     .pipe(gulp.dest(paths.destination))
@@ -113,7 +112,7 @@ gulp.task('rev', ['less', 'js'], function() {
     .on('error', util.log);
 });
 
-gulp.task('replace', ['rev'], function() {
+gulp.task('replace', ['rev'], function(){
   var manifest = gulp.src(paths.manifest);
 
   return gulp.src(paths.htmlsrc)
@@ -122,43 +121,43 @@ gulp.task('replace', ['rev'], function() {
     .on('error', util.log);
 });
 
-gulp.task('jade', function() {
+gulp.task('jade', function(){
   return gulp.src(paths.jadesrc)
     .pipe(jade({pretty: true, doctype: 'html', locals: {isProd: isProd}}))
     .pipe(gulp.dest(paths.destination))
     .on('error', util.log);
 });
 
-gulp.task('lint', function() {
+gulp.task('lint', function(){
   return gulp.src(paths.codesrc)
     .pipe(lint())
-    .pipe(lint.reporter('jshint-stylish'))
+    .pipe(lint.format())
     .on('error', util.log);
 });
 
-gulp.task('lint-self', function() {
+gulp.task('lint-self', function(){
   return gulp.src('./gulpfile.js')
     .pipe(lint())
     .pipe(lint.reporter('jshint-stylish'))
     .on('error', util.log);
 });
 
-gulp.task('copy', function() {
+gulp.task('copy', function(){
   return gulp.src(paths.mediasrc)
-    .pipe(copy(paths.destination, {prefix:1}))
+    .pipe(copy(paths.destination, {prefix: 1}))
     .on('error', util.log);
 });
 
-gulp.task('serve', function() {
+gulp.task('serve', function(){
   return browser({server: paths.destination});
 });
 
-gulp.task('reload', function () {
+gulp.task('reload', function(){
   return browser.reload();
 });
 
-gulp.task('watch', function() {
-  return watch(paths.filesrc, function() {
+gulp.task('watch', function(){
+  return watch(paths.filesrc, function(){
     gulp.start('refresh');
   });
 });
@@ -167,9 +166,9 @@ gulp.task('watch', function() {
 // AWS_ACCESS_KEY_ID
 // AWS_BUCKET
 
-gulp.task('aws:publish', function() {
+gulp.task('aws:publish', function(){
   var publisher = awspublish.create({bucket: process.env.AWS_BUCKET});
-  //var headers = {'Cache-Control': 'max-age=315360000, public'};
+  // var headers = {'Cache-Control': 'max-age=315360000, public'};
   var headers = {};
   return gulp.src('./public/**/*')
     .pipe(awspublish.gzip())
@@ -178,13 +177,13 @@ gulp.task('aws:publish', function() {
     .pipe(awspublish.reporter());
 });
 
-gulp.task('aws:publish:clean', ['clean:public', 'clean:temp', 'clean:aws'], function() {
+gulp.task('aws:publish:clean', ['clean:public', 'clean:temp', 'clean:aws'], function(){
   var publisher = awspublish.create({bucket: process.env.AWS_BUCKET});
   return gulp.src('./public/**/*')
     .pipe(publisher.sync())
     .pipe(awspublish.reporter());
 });
 
-gulp.task('aws:publish:full', ['aws:publish:clean'], function(cb) {
+gulp.task('aws:publish:full', ['aws:publish:clean'], function(cb){
   run('deploy', 'aws:publish', cb);
 });

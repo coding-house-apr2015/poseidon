@@ -2,7 +2,6 @@
 
 angular.module('poseidon')
 .factory('User', function($rootScope, $http, nodeUrl){
-
   function User(){
   }
 
